@@ -1,5 +1,5 @@
 # Docker for AI DEV CLI
-This CLI tool work with [p208p2002/docker-for-ai-dev](https://github.com/NCHU-NLU-Lab/docker-for-ai-dev)
+This CLI tool work with [NCHU-NLU-Lab/docker-for-ai-dev](https://github.com/NCHU-NLU-Lab/docker-for-ai-dev)
 
 ## Install
 ```bash
