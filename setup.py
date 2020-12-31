@@ -6,7 +6,7 @@ setuptools.setup(
     author="Philip Huang",
     author_email="p208p2002@gmail.com",
     description="docker-for-ai-dev-cli",
-    url="https://github.com/p208p2002/docker-for-ai-dev-cli",
+    url="https://github.com/NCHU-NLU-Lab/docker-for-ai-dev-cli",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -14,7 +14,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     entry_points = {
-        'console_scripts': ['dfad=docker_for_ai_dev_cli:main'],
+        'console_scripts': ['udic-docker=docker_for_ai_dev_cli:main'],
     },
     python_requires='>=3.5',
     install_requires = ['requests']
