@@ -21,7 +21,7 @@ Dockerfiles for quickly create remote dev env for pytorch & tensorflow
 choose one: CLI Tool or CMD Generator
 
 ### CLI Tool
-- [udiclab/docker-for-ai-dev-cli](https://github.com/udiclab/docker-for-ai-dev-cli)
+- [udiclab/docker-for-ai-dev-cli](https://github.com/NCHU-NLU-Lab/docker-for-ai-dev-cli)
 
 ## Web VScode Issues
 - [can't paste text to terminal](https://github.com/cdr/code-server/issues/1106)
