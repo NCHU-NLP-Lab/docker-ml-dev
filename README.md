@@ -1,4 +1,4 @@
-# Docker for AI DEV ![Build and Publish](https://github.com/udiclab/docker-for-ai-dev/workflows/Build%20and%20Publish/badge.svg)
+# Docker for AI DEV ![Build and Publish](https://github.com/NCHU-NLU-Lab/docker-for-ai-dev/workflows/Build%20and%20Publish/badge.svg)
 Dockerfiles for quickly create remote dev env for pytorch & tensorflow
 
 [GitHub](https://github.com/udiclab/docker-for-ai-dev)
