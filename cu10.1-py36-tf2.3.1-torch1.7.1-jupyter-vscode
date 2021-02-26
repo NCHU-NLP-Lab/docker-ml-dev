@@ -33,7 +33,7 @@ COPY script_files/docker_start.sh /docker_start.sh
 RUN chmod 777 /docker_start.sh
 
 # pytorch
-RUN pip install torch==1.7.0
+RUN pip install -U https://download.pytorch.org/whl/cu110/torch-1.7.1%2Bcu110-cp36-cp36m-linux_x86_64.whl
 
 # jupyter
 COPY config_files/jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
