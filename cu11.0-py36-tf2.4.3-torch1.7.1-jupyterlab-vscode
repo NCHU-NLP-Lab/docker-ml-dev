@@ -1,17 +1,17 @@
-FROM tensorflow/tensorflow:2.3.1-gpu-jupyter
-LABEL maintainer="p208p2002@gmail.com"
+FROM tensorflow/tensorflow:2.4.3-gpu
+
+LABEL maintainer="ryanytshih@gmail.com"
 
 #
 WORKDIR /
 
 # 
-RUN apt-get update
-RUN apt-get install -y sudo \ 
-                        apt-utils \
-                        wget \
-                        vim \
-                        git \
-                        curl
+RUN apt-get update && apt-get install -y sudo \ 
+                                        apt-utils \
+                                        wget \
+                                        vim \
+                                        git \
+                                        curl
 
 # ip、ping
 RUN apt-get install -y net-tools \
@@ -37,6 +37,7 @@ RUN pip install -U https://download.pytorch.org/whl/cu110/torch-1.7.1%2Bcu110-cp
 
 # jupyter
 COPY config_files/jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
+RUN pip install jupyterlab
 
 # avoid scp error
 RUN rm /etc/bash.bashrc
@@ -51,7 +52,7 @@ RUN echo 'export LC_ALL="en_US.utf8"' >> /etc/bash.bashrc
 RUN update-locale LANG=en_US.utf8
 
 # nodejs
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN sudo apt install nodejs
 
 # vscode-server

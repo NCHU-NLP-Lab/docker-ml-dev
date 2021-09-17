@@ -31,4 +31,4 @@ if [ -d "/user_data" ]; then
     SERVICE_HOME = '/user_data'
 fi
 (nohup runuser -l $NAME -c "export PASSWORD=$PASSWORD&&export SHELL=/bin/bash&&code-server --host 0.0.0.0 $SERVICE_HOME" 2> /dev/null&);
-(nohup runuser -l $NAME -c "export PASSWORD=$PASSWORD&&jupyter notebook --ip=0.0.0.0 --notebook-dir=$SERVICE_HOME" 2> /dev/null&);
+(nohup runuser -l $NAME -c "export PASSWORD=$PASSWORD&&jupyter lab --ip=0.0.0.0 --NotebookApp.token=$PASSWORD --notebook-dir=$SERVICE_HOME" 2> /dev/null&);

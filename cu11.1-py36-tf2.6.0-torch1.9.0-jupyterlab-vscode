@@ -1,17 +1,17 @@
-FROM tensorflow/tensorflow:2.3.1-gpu-jupyter
-LABEL maintainer="p208p2002@gmail.com"
+FROM tensorflow/tensorflow:2.6.0-gpu
+
+LABEL maintainer="ryanytshih@gmail.com"
 
 #
 WORKDIR /
 
 # 
-RUN apt-get update
-RUN apt-get install -y sudo \ 
-                        apt-utils \
-                        wget \
-                        vim \
-                        git \
-                        curl
+RUN apt-get update && apt-get install -y sudo \ 
+                                        apt-utils \
+                                        wget \
+                                        vim \
+                                        git \
+                                        curl
 
 # ip、ping
 RUN apt-get install -y net-tools \
@@ -33,10 +33,11 @@ COPY script_files/docker_start.sh /docker_start.sh
 RUN chmod 777 /docker_start.sh
 
 # pytorch
-RUN pip install https://download.pytorch.org/whl/cu101/torch-1.7.0%2Bcu101-cp36-cp36m-linux_x86_64.whl
+RUN pip install -U https://download.pytorch.org/whl/cu111/torch-1.9.0%2Bcu111-cp36-cp36m-linux_x86_64.whl
 
 # jupyter
 COPY config_files/jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
+RUN pip install jupyterlab
 
 # avoid scp error
 RUN rm /etc/bash.bashrc
@@ -51,7 +52,7 @@ RUN echo 'export LC_ALL="en_US.utf8"' >> /etc/bash.bashrc
 RUN update-locale LANG=en_US.utf8
 
 # nodejs
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN sudo apt install nodejs
 
 # vscode-server
