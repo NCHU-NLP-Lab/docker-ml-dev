@@ -1,35 +1,29 @@
-# Docker for AI DEV ![Build and Publish](https://github.com/NCHU-NLU-Lab/docker-for-ai-dev/workflows/Build%20and%20Publish/badge.svg)
-Dockerfiles for quickly create remote dev env for pytorch & tensorflow
+# Docker for ML Dev
+
+![Build and Publish](https://github.com/NCHU-NLU-Lab/docker-ml-dev/workflows/Build%20and%20Publish/badge.svg)
+
+Dockerfile for quickly create remote dev env for pytorch & tensorflow
 
 ## Install
-```bash
-[GitHub](https://github.com/udiclab/docker-for-ai-dev)
-```
 
-[DokcerHub](https://hub.docker.com/r/udiclab/docker-for-ai-dev)
+- [GitHub](https://github.com/NCHU-NLP-Lab/docker-ml-dev)
+- [Dokcer Hub](https://hub.docker.com/r/nchunlplab/ml-dev)
 
-## Feature
-- **jupyter**
-- [**web-vscode** (code server)](https://github.com/cdr/code-server)
+## Features
+
+- Jupyter
+- [web-vscode (code server)](https://github.com/cdr/code-server)
 - ssh
 - fail2ban
 - pytorch
 - tensorflow
 - cuda support
 
-## Demo
-![Demo Animation](../assets/demo.gif?raw=true)
-
 ## Usage
-choose one: CLI Tool or CMD Generator
-```bash
-$ udic-docker list
 
-### CLI Tool
-```bash
-- [NCHU-NLU-Lab/docker-for-ai-dev-cli](https://github.com/NCHU-NLU-Lab/docker-for-ai-dev-cli)
+see the `cli` folder
 
-## Web VScode Issues
-```bash
-- [can't paste text to terminal](https://github.com/cdr/code-server/issues/1106)
-    - try `ctrl+shift+v` or `shift+insert`
+## Known Issue
+
+- [Can't paste text to terminal](https://github.com/cdr/code-server/issues/1106)
+  - try `ctrl+shift+v` or `shift+insert`
