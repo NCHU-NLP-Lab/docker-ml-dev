@@ -15,22 +15,28 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: "Build"
+    runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - "cu10.2-py36-tf2.3.4-torch1.9.0-jupyterlab-vscode"
+          - "cu11.0-py36-tf2.4.3-torch1.7.1-jupyterlab-vscode"
+          - "cu11.1-py36-tf2.6.0-torch1.9.0-jupyterlab-vscode"
     steps:
-      - uses: actions/checkout@v2
-      - name: Docker login
-        uses: docker/login-action@v1
+      - uses: "actions/checkout@v2"
+
+      - name: "Docker login"
+        uses: "docker/login-action@v1"
         with:
-          username: nchunlplab
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build
-        working-directory: image
-        run: |
-          docker build -t nchunlplab/ml-dev:cu10.2-py36-tf2.3.4-torch1.9.0-jupyterlab-vscode -f cu10.2-py36-tf2.3.4-torch1.9.0-jupyterlab-vscode.Dockerfile .
-          docker build -t nchunlplab/ml-dev:cu11.0-py36-tf2.4.3-torch1.7.1-jupyterlab-vscode -f cu11.0-py36-tf2.4.3-torch1.7.1-jupyterlab-vscode.Dockerfile .
-          docker build -t nchunlplab/ml-dev:cu11.1-py36-tf2.6.0-torch1.9.0-jupyterlab-vscode -f cu11.1-py36-tf2.6.0-torch1.9.0-jupyterlab-vscode.Dockerfile .
-      - name: Push
-        run: |
-          docker push nchunlplab/ml-dev:cu10.2-py36-tf2.3.4-torch1.9.0-jupyterlab-vscode
-          docker push nchunlplab/ml-dev:cu11.0-py36-tf2.4.3-torch1.7.1-jupyterlab-vscode
-          docker push nchunlplab/ml-dev:cu11.1-py36-tf2.6.0-torch1.9.0-jupyterlab-vscode
+          username: "nchunlplab"
+          password: "${{ secrets.DOCKER_PASSWORD }}"
+
+      - name: "Build and push"
+        uses: "docker/build-push-action@v2"
+        with:
+          context: "image"
+          file: "image/${{ matrix.image }}.Dockerfile"
+          tags: "nchunlplab/ml-dev:${{ matrix.image }}"
+          push: true

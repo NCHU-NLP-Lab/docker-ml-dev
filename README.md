@@ -1,6 +1,6 @@
 # Docker for ML Dev
 
-![Build and Publish](https://github.com/NCHU-NLU-Lab/docker-ml-dev/workflows/Build%20and%20Publish/badge.svg)
+![Build and Publish](https://github.com/NCHU-NLP-Lab/docker-ml-dev/actions/workflows/build.yml/badge.svg)
 
 Dockerfile for quickly create remote dev env for pytorch & tensorflow
 
