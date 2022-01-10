@@ -113,7 +113,7 @@ def create_container():
     _docker_run_options += '-e"NAME"=%s ' % (user_options["username"])
     _docker_run_options += '-e"PASSWORD"=%s ' % (user_options["password"])
 
-    docker_run_cmd = "docker run -itd %s %s %s %s %s %s" % (
+    docker_run_cmd = "docker run --ipc=host -itd %s %s %s %s %s %s" % (
         _docker_run_options,
         user_options["docker_run_options"],
         user_options["ssh_porting"],
