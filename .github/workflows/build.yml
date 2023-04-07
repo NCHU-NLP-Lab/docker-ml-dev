@@ -25,6 +25,7 @@ jobs:
           - "cu11.0-py36-tf2.4.3-torch1.7.1-jupyterlab-vscode"
           - "cu11.1-py36-tf2.6.0-torch1.9.0-jupyterlab-vscode"
           - "cu11.2-py38-tf2.10.0-torch1.12.1-jupyterlab-vscode"
+          - "cu11.6-py39-torch1.12.1-jupyterlab-vscode.Dockerfile"
     steps:
       - uses: "actions/checkout@v2"
 
