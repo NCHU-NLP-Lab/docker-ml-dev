@@ -1,6 +1,6 @@
-FROM tensorflow/tensorflow:2.6.0-gpu
+FROM tensorflow/tensorflow:2.11.0-gpu
 
-LABEL maintainer="ryanytshih@gmail.com"
+LABEL maintainer="kasf1346@gmail.com"
 
 #
 WORKDIR /
@@ -33,7 +33,7 @@ COPY script_files/docker_start.sh /docker_start.sh
 RUN chmod 777 /docker_start.sh
 
 # pytorch
-RUN pip install -U https://download.pytorch.org/whl/cu111/torch-1.9.0%2Bcu111-cp36-cp36m-linux_x86_64.whl
+RUN pip install -U https://download.pytorch.org/whl/cu111/torch-1.9.1%2Bcu111-cp38-cp38-linux_x86_64.whl
 
 # jupyter
 COPY config_files/jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
@@ -52,7 +52,7 @@ RUN echo 'export LC_ALL="en_US.utf8"' >> /etc/bash.bashrc
 RUN update-locale LANG=en_US.utf8
 
 # nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN sudo apt install nodejs
 
 # vscode-server
