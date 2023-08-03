@@ -13,7 +13,7 @@ RUN apt update && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-ARG PYTHON_VERSION=3.10.12
+ARG PYTHON_VERSION=3.9.12
 
 RUN cd /tmp && \
     wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
