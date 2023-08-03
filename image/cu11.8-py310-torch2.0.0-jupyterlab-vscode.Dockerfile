@@ -13,7 +13,7 @@ RUN apt update && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-ARG PYTHON_VERSION=3.10.12
+ARG PYTHON_VERSION=3.10.11
 
 RUN cd /tmp && \
     wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
@@ -27,11 +27,11 @@ RUN cd /tmp && \
     python -m pip install --upgrade pip && \
     rm -r /root/.cache/pip
 
-ARG PYTORCH_VERSION=2.0.1
+ARG PYTORCH_VERSION=2.0.0
 ARG PYTORCH_VERSION_SUFFIX=+cu118
-ARG TORCHVISION_VERSION=0.15.2
+ARG TORCHVISION_VERSION=0.15.0
 ARG TORCHVISION_VERSION_SUFFIX=+cu118
-ARG TORCHAUDIO_VERSION=2.0.2
+ARG TORCHAUDIO_VERSION=2.0.0
 ARG TORCHAUDIO_VERSION_SUFFIX=+cu118
 ARG PYTORCH_DOWNLOAD_URL=https://download.pytorch.org/whl/cu118/torch_stable.html
 
