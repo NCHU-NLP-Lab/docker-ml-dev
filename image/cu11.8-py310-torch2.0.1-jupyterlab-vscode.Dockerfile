@@ -1,10 +1,4 @@
-ARG BASE_IMAGE=nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
-
-FROM ${BASE_IMAGE}
-
-LABEL maintainer="wenchuan19991111@gmail.com"
-
-ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility}
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
 RUN apt update && \
     apt install -y \
@@ -13,50 +7,28 @@ RUN apt update && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-ARG PYTHON_VERSION=3.10.12
+WORKDIR /temp
 
-RUN cd /tmp && \
-    wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
-    tar -xvf Python-${PYTHON_VERSION}.tgz && \
-    cd Python-${PYTHON_VERSION} && \
+# download python
+RUN wget https://www.python.org/ftp/python/3.10.12/Python-3.10.12.tgz && \
+    tar -xvf Python-3.10.12.tgz
+
+# install python
+RUN cd Python-3.10.12 && \
     ./configure --enable-optimizations && \
-    make && make install && \
-    cd .. && rm Python-${PYTHON_VERSION}.tgz && rm -r Python-${PYTHON_VERSION} && \
+    make && \
+    make install
+
+WORKDIR /workspace
+
+RUN rm -r /temp && \
     ln -s /usr/local/bin/python3 /usr/local/bin/python && \
-    ln -s /usr/local/bin/pip3 /usr/local/bin/pip && \
-    python -m pip install --upgrade pip && \
+    ln -s /usr/local/bin/pip3 /usr/local/bin/pip
+
+# install pytorch
+RUN pip3 install torch==2.0.0+cu118 torchvision==0.15.1+cu118 torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cu118 && \
     rm -r /root/.cache/pip
 
-ARG PYTORCH_VERSION=2.0.1
-ARG PYTORCH_VERSION_SUFFIX=+cu118
-ARG TORCHVISION_VERSION=0.15.2
-ARG TORCHVISION_VERSION_SUFFIX=+cu118
-ARG TORCHAUDIO_VERSION=2.0.2
-ARG TORCHAUDIO_VERSION_SUFFIX=+cu118
-ARG PYTORCH_DOWNLOAD_URL=https://download.pytorch.org/whl/cu118/torch_stable.html
-
-
-RUN if [ ! $TORCHAUDIO_VERSION ]; \
-    then \
-        TORCHAUDIO=; \
-    else \
-        TORCHAUDIO=torchaudio==${TORCHAUDIO_VERSION}${TORCHAUDIO_VERSION_SUFFIX}; \
-    fi && \
-    if [ ! $PYTORCH_DOWNLOAD_URL ]; \
-    then \
-        pip install \
-            torch==${PYTORCH_VERSION}${PYTORCH_VERSION_SUFFIX} \
-            torchvision==${TORCHVISION_VERSION}${TORCHVISION_VERSION_SUFFIX} \
-            ${TORCHAUDIO}; \
-    else \
-        pip install \
-            torch==${PYTORCH_VERSION}${PYTORCH_VERSION_SUFFIX} \
-            torchvision==${TORCHVISION_VERSION}${TORCHVISION_VERSION_SUFFIX} \
-            ${TORCHAUDIO} \
-            -f ${PYTORCH_DOWNLOAD_URL}; \
-    fi && \
-    rm -r /root/.cache/pip
-  
 #
 WORKDIR /
 
