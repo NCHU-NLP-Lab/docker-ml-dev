@@ -30,4 +30,6 @@ see the `cli` folder
  
 ## Install dependency command not found
 
-```bash PATH=$PATH:/user_data/.local/bin ```
+```bash
+PATH=$PATH:/user_data/.local/bin
+```
