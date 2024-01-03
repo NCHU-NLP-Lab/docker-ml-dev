@@ -27,3 +27,7 @@ see the `cli` folder
 
 - [Can't paste text to terminal](https://github.com/cdr/code-server/issues/1106)
   - try `ctrl+shift+v` or `shift+insert`
+ 
+## Install dependency command not found
+
+```bash PATH=$PATH:/user_data/.local/bin ```
