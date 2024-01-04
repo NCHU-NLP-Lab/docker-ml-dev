@@ -26,7 +26,7 @@ RUN rm -r /temp && \
     ln -s /usr/local/bin/pip3 /usr/local/bin/pip
 
 # install pytorch
-RUN pip3 install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu121 && \
+RUN pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121 && \
     rm -r /root/.cache/pip
 
 #
