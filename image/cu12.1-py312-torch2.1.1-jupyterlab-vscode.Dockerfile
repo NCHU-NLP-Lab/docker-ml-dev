@@ -10,11 +10,11 @@ RUN apt update && \
 WORKDIR /temp
 
 # download python
-RUN wget https://www.python.org/ftp/python/3.12.1/Python-3.12.1.tgz && \
-    tar -xvf Python-3.12.1.tgz
+RUN wget https://www.python.org/ftp/python/3.10.12/Python-3.10.12.tgz && \
+    tar -xvf Python-3.10.12.tgz
 
 # install python
-RUN cd Python-3.12.1 && \
+RUN cd Python-3.10.12 && \
     ./configure --enable-optimizations && \
     make && \
     make install
