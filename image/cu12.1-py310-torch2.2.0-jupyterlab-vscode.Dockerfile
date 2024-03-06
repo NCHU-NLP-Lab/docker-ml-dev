@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:12.3.2-cudnn9-devel-ubuntu22.04
 
 RUN apt update && \
     apt install -y \
@@ -26,7 +26,7 @@ RUN rm -r /temp && \
     ln -s /usr/local/bin/pip3 /usr/local/bin/pip
 
 # install pytorch
-RUN pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121 && \
+RUN pip install torch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 --index-url https://download.pytorch.org/whl/cu121 && \
     rm -r /root/.cache/pip
 
 #
