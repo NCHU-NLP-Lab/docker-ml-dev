@@ -60,7 +60,7 @@ def create_container():
         use_gpu = False
     user_options["use_gpu"] = use_gpu
     if use_gpu:
-        gpu_ids = input("Assign GPUs for container (by GPU id) e.g. 0 or 0,1 or all:")
+        gpu_ids = input("Assign GPUs for container (by GPU id) e.g. \'\"device=0,1\"\' or all:")
         assert gpu_ids != ""
         user_options["gpu_ids"] = gpu_ids
 
