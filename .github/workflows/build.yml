@@ -23,7 +23,6 @@ jobs:
         image:
           - "cu12.1-py310-torch2.2.0-jupyterlab-vscode"
           - "cu11.8-py310-torch2.0.1-jupyterlab-vscode"
-          - "cu11.8-py310-torch2.0.1-tensorflow2.14.0-jupyterlab-vscode"
           - "cu12.4-py311-torch2.4.0-jupyterlab-vscode"
     steps:
       - uses: "actions/checkout@v2"
