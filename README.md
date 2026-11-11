@@ -23,6 +23,8 @@ Dockerfile for quickly create remote dev env for pytorch & tensorflow
 
 see the `cli` folder
 
+For NVIDIA DGX Spark (GB10 / ARM64), see the [Spark image build, validation and publishing guide](image/README.spark.md).
+
 ## Known Issue
 
 - [Can't paste text to terminal](https://github.com/cdr/code-server/issues/1106)

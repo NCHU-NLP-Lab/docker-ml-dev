@@ -28,9 +28,10 @@ jobs:
       - uses: "actions/checkout@v2"
 
       - name: "Docker login"
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: "docker/login-action@v1"
         with:
-          username: "nchunlplab"
+          username: "${{ vars.DOCKERHUB_USERNAME || 'nchunlplab' }}"
           password: "${{ secrets.DOCKER_PASSWORD }}"
 
       - name: "Build and push"
@@ -39,4 +40,38 @@ jobs:
           context: "image"
           file: "image/${{ matrix.image }}.Dockerfile"
           tags: "nchunlplab/ml-dev:${{ matrix.image }}"
-          push: true
+          push: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
+
+  spark:
+    name: "Build and publish Spark (ARM64)"
+    runs-on: ${{ vars.SPARK_BUILD_RUNNER || 'ubuntu-24.04-arm' }}
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate startup configuration
+        run: python3 -m unittest discover -s image/tests -v
+      - uses: docker/setup-buildx-action@v3
+      - name: Build ARM64 image
+        uses: docker/build-push-action@v6
+        with:
+          context: image
+          file: image/dgx-spark-pytorch26.10-jupyterlab-vscode.Dockerfile
+          platforms: linux/arm64
+          tags: ml-dev:dgx-spark-pytorch26.10
+          load: true
+          push: false
+      - name: Test services and persistence (no GPU on hosted runner)
+        run: bash image/tests/smoke_spark.sh ml-dev:dgx-spark-pytorch26.10
+      - name: Docker Hub login
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME || 'nchunlplab' }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish Spark tag after service tests
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          docker tag ml-dev:dgx-spark-pytorch26.10 nchunlplab/ml-dev:dgx-spark-pytorch26.10-jupyterlab-vscode
+          docker push nchunlplab/ml-dev:dgx-spark-pytorch26.10-jupyterlab-vscode
