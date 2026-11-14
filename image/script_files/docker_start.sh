@@ -22,8 +22,3 @@ touch already_ran;
 # Run repeat
 service fail2ban start;
 service ssh start;
-SERVICE_HOME = '/'
-if [ -d "/user_data" ]; then 
-    # volume exists" 
-    SERVICE_HOME = '/user_data'
-fi
