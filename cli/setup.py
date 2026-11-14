@@ -2,9 +2,11 @@ import setuptools
 
 setuptools.setup(
     name="ml_dev_cli",
-    version="0.0.1",
+    version="0.0.2",
     author="Philip Huang",
     author_email="p208p2002@gmail.com",
+    maintainer="NCHU NLP Lab",
+    maintainer_email="nlpnchu@gmail.com",
     description="🧰🛠 out-of-the-box docker images for create remote ML development environment",
     url="https://github.com/NCHU-NLP-Lab/docker-ml-dev",
     packages=setuptools.find_packages(),
