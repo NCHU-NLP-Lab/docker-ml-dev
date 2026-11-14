@@ -13,9 +13,6 @@ else
         cp /etc/skel/.bashrc /user_data
         cp /etc/skel/.profile /user_data
         #
-        mkdir /user_data/.jupyter
-        cp /root/.jupyter/jupyter_notebook_config.py /user_data/.jupyter/jupyter_notebook_config.py
-        chmod -R 775 /user_data/.jupyter
         # user own /user_data
         chown -R $NAME:$NAME /user_data
     fi
@@ -30,5 +27,3 @@ if [ -d "/user_data" ]; then
     # volume exists" 
     SERVICE_HOME = '/user_data'
 fi
-(nohup runuser -l $NAME -c "export PASSWORD=$PASSWORD&&export SHELL=/bin/bash&&code-server --host 0.0.0.0 $SERVICE_HOME" 2> /dev/null&);
-(nohup runuser -l $NAME -c "export PASSWORD=$PASSWORD&&jupyter lab --ip=0.0.0.0 --NotebookApp.token=$PASSWORD --notebook-dir=$SERVICE_HOME" 2> /dev/null&);
