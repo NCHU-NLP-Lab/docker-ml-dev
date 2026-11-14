@@ -71,10 +71,6 @@ def create_container():
     # service
     ssh_port = input("ssh port:")
     user_options["ssh_porting"] = "-p %s:22" % ssh_port
-    jupyter_port = input("jupyter port:")
-    user_options["jupyter_porting"] = "-p %s:8888" % jupyter_port
-    vscode_port = input("vscode port:")
-    user_options["vscode_porting"] = "-p %s:8080" % vscode_port
 
     # create volume
     create_volume = input("create volume? (mount at /user_data) y/n:")
@@ -113,12 +109,10 @@ def create_container():
     _docker_run_options += '-e"NAME"=%s ' % (user_options["username"])
     _docker_run_options += '-e"PASSWORD"=%s ' % (user_options["password"])
 
-    docker_run_cmd = "docker run --ipc=host -itd %s %s %s %s %s %s" % (
+    docker_run_cmd = "docker run --ipc=host -itd %s %s %s %s" % (
         _docker_run_options,
         user_options["docker_run_options"],
         user_options["ssh_porting"],
-        user_options["jupyter_porting"],
-        user_options["vscode_porting"],
         user_options["select_image_tag"],
     )
 
